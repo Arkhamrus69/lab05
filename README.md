@@ -329,5 +329,10 @@ test 1
 Total Test time (real) =   0.00 sec
 </details>
 
+Два коммита, которые пропали
+
+<img width="1397" height="800" alt="Снимок экрана 2026-04-30 в 12 22 55" src="https://github.com/user-attachments/assets/8326e1c5-4e24-472f-95f1-711d201bb369" />
+<img width="1407" height="122" alt="Снимок экрана 2026-04-30 в 12 23 05" src="https://github.com/user-attachments/assets/e37cae95-6b45-49af-ab1c-0b2e628f1eab" />
+
 
 Дальше все понятно
