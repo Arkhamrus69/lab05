@@ -1,0 +1,8 @@
+build/
+_build/
+_install/
+*.o
+*.a
+*.so
+*.exe
+log.txt

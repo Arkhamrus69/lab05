@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        compiler:
+          - cxx: g++
+            cc: gcc
+          - cxx: clang++
+            cc: clang
+        exclude:
+          - os: macos-latest
+            compiler:
+              cxx: g++
+              cc: gcc
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y cmake
+
+      - name: Install dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: brew install cmake
+
+      - name: Configure CMake
+        run: |
+          cmake -B build \
+            -DCMAKE_CXX_COMPILER=${{ matrix.compiler.cxx }} \
+            -DCMAKE_C_COMPILER=${{ matrix.compiler.cc }}
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Run hello_world
+        run: |
+          cd build
+          ./hello_world/hello_world
+
+      - name: Run solver
+        run: |
+          cd build
+          ./solver/solver
